@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimora's Pharmacy</title>
+    <link rel="stylesheet" href="kimora.css">
+    <style>
+        /* Navigation Bar Styling */
+        .topnav {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            padding: 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .topnav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+        }
+        
+        .topnav a {
+            color: white;
+            text-decoration: none;
+            padding: 18px 24px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .topnav a:last-child {
+            border-right: none;
+            margin-left: auto;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            font-weight: bold;
+            padding: 18px 30px;
+        }
+        
+        .topnav a:last-child:hover {
+            background: linear-gradient(135deg, #feb47b, #ff7e5f);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(254, 180, 123, 0.4);
+        }
+        
+        .topnav a.active {
+            background: rgba(255, 255, 255, 0.15);
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .topnav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20%;
+            right: 20%;
+            height: 3px;
+            background: #00c6ff;
+            border-radius: 2px;
+        }
+        
+        .topnav a:not(.active):hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .topnav a:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 25%;
+            height: 50%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Product list styling */
+        .product-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .product-list li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .product-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Search form improvement */
+        .search-form {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .search-form input {
+            padding: 8px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            transition: border 0.3s ease;
+        }
+        
+        .search-form input:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+        
+        .search-form button {
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .search-form button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Brand styling improvement */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+        }
+        
+        .brand .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2a5298;
+        }
+        
+        .brand .site-title {
+            color: #2a5298;
+            font-size: 32px;
+            margin: 0;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="brand">
+        <img src="images/logo.jpg.jpeg" class="logo" alt="Kimora's Pharmacy Logo">
+        <h1 class="site-title">Kimora's Pharmacy</h1>
+    </div>
+
+    <form class="search-form" action="/search" method="GET" style="float: right;">
+        <label for="searchBox" style="font-weight: bold; color: #2a5298;">Search:</label>
+        <input type="text" id="searchBox" name="q" placeholder="Type product or service..." required>
+        <button type="submit">Go</button>
+    </form>
+
+    <div class="topnav">
+        <a class="active" href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+        <a href="cart.html" class="cart-right">Cart & Fidelity Design</a>
+    </div>
+
+    <div class="category"></div>
+
+    <div class="container" style="display: flex; align-items: flex-start; gap: 40px; padding: 20px 0;">
+        <img src="images/about (2).jpeg" class="hero-image" alt="Pharmacist" style="width: 850px; height: auto; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+
+        <div style="flex: 1;">
+            <h2 style="color: #2a5298; font-size: 28px; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 3px solid #00c6ff;">Featured Products</h2>
+
+            <ul class="product-list">
+                <li>
+                    Ibuprofen tablet
+                    <img src="images/medicine-image1.jpg.jpeg" alt="medicine 1" style="width: 200px; height: 200px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+                </li>
+
+                <li>
+                    Vitamin C tablet
+                    <img src="images/medicine-image2.jpg.jpeg" alt="medicine 2" style="width: 200px; height: 200px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+                </li>
+
+                <li>
+                    Cough syrups
+                    <img src="images/medicine-image3.jpg.jpeg" alt="medicine 3" style="width: 200px; height: 200px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+                </li>
+
+                <li>
+                    Sigmaceutical
+                    <img src="images/medicine-image4.jpg.jpeg" alt="medicine 4" style="width: 200px; height: 200px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+                </li>
+
+                <li>
+                    Tylenol
+                    <img src="images/medicine-image5.jpg.jpeg" alt="medicine 5" style="width: 200px; height: 200px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+                </li>
+
+                <li>
+                    Cortizone
+                    <img src="images/medicine-image6.jpg.jpeg" alt="medicine 6" style="width: 200px; height: 200px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

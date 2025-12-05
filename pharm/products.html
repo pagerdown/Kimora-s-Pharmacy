@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Kimora's Pharmacy</title>
+    <link rel="stylesheet" href="kimora.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #2a5ca9 0%, #1e4a8a 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(42, 92, 169, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Navigation */
+        .topnav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .topnav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .topnav a:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .topnav a.active {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .topnav a.cart-right {
+            background: #ff6b6b;
+            margin-left: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .topnav a.cart-right:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+        
+        /* Products Table */
+        .products-table-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+        
+        .products-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+        
+        .products-table thead {
+            background: linear-gradient(135deg, #2a5ca9 0%, #3d7cb4 100%);
+            color: white;
+        }
+        
+        .products-table th {
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            position: sticky;
+            top: 0;
+        }
+        
+        .products-table tbody tr {
+            border-bottom: 1px solid #eef2f7;
+            transition: all 0.3s ease;
+        }
+        
+        .products-table tbody tr:hover {
+            background-color: #f8faff;
+            transform: translateX(5px);
+        }
+        
+        .products-table td {
+            padding: 16px 20px;
+            border: none;
+            vertical-align: middle;
+        }
+        
+        .products-table td:nth-child(1) {
+            font-weight: 600;
+            color: #2a5ca9;
+        }
+        
+        .products-table td:nth-child(2) {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .products-table td:nth-child(2)::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .category-medicine::before {
+            background-color: #2196f3;
+        }
+        
+        .category-wellness::before {
+            background-color: #4caf50;
+        }
+        
+        .category-health::before {
+            background-color: #ff9800;
+        }
+        
+        .products-table td:nth-child(4) {
+            color: #2a5ca9;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        /* Action Buttons */
+        .action-btn {
+            background: linear-gradient(135deg, #2a5ca9 0%, #3d7cb4 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 92, 169, 0.4);
+            background: linear-gradient(135deg, #1e4a8a 0%, #2a5ca9 100%);
+        }
+        
+        .action-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 300px;
+            z-index: 1000;
+            display: none;
+            border: 2px solid #2a5ca9;
+        }
+        
+        .cart-sidebar h3 {
+            color: #2a5ca9;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eef2f7;
+        }
+        
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eef2f7;
+        }
+        
+        .cart-total {
+            font-weight: bold;
+            color: #2a5ca9;
+            font-size: 1.2rem;
+            text-align: right;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #eef2f7;
+        }
+        
+        /* Checkout Button */
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .topnav {
+                gap: 10px;
+            }
+            
+            .topnav a {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            .topnav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .topnav a.cart-right {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            
+            .cart-sidebar {
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                padding-top: 80px;
+            }
+            
+            .close-cart {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: #ff6b6b;
+                color: white;
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-table th,
+            .products-table td {
+                padding: 12px 15px;
+            }
+            
+            .action-btn {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .products-table tbody tr {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .products-table tbody tr:nth-child(odd) {
+            animation-delay: 0.1s;
+        }
+        
+        .products-table tbody tr:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Our Products & Prices</h1>
+            <nav>
+                <div class="topnav">
+                    <a href="index.html.html">Home</a>
+                    <a href="products.html" class="active">Products</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="about.html">About</a>
+                    <a href="cart.html" class="cart-right">🛒 Cart (<span id="cart-count">0</span>)</a>
+                </div>
+            </nav>
+        </header>
+
+        <div class="products-table-container">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Details</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pan Relief</td>
+                        <td class="category-medicine">Medicine</td>
+                        <td>30 tablets</td>
+                        <td>₵15.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Pan Relief', 15.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Cough Syrup</td>
+                        <td class="category-medicine">Medicine</td>
+                        <td>100ml</td>
+                        <td>₵22.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Cough Syrup', 22.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Maintainer</td>
+                        <td class="category-wellness">Wellness</td>
+                        <td>80 capsules</td>
+                        <td>₵35.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Maintainer', 35.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>BP Monitor</td>
+                        <td class="category-health">Health</td>
+                        <td>1 unit</td>
+                        <td>₵89.00</td>
+                        <td><button class="action-btn" onclick="addToCart('BP Monitor', 89.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Antibiotic Ointment</td>
+                        <td class="category-medicine">Medicine</td>
+                        <td>25g</td>
+                        <td>₵10.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Antibiotic Ointment', 10.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Vitamin C Supplement</td>
+                        <td class="category-wellness">Wellness</td>
+                        <td>90 tablets</td>
+                        <td>₵42.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Vitamin C Supplement', 42.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Digital Thermometer</td>
+                        <td class="category-health">Health</td>
+                        <td>1 unit</td>
+                        <td>₵35.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Digital Thermometer', 35.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Allergy Relief</td>
+                        <td class="category-medicine">Medicine</td>
+                        <td>20 tablets</td>
+                        <td>₵27.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Allergy Relief', 27.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Hasold Tablets</td>
+                        <td class="category-medicine">Medicine</td>
+                        <td>24 tablets</td>
+                        <td>₵12.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Hasold Tablets', 12.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>D4D Drops</td>
+                        <td class="category-wellness">Wellness</td>
+                        <td>50mg</td>
+                        <td>₵18.00</td>
+                        <td><button class="action-btn" onclick="addToCart('D4D Drops', 18.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Protein Powder</td>
+                        <td class="category-medicine">Medicine</td>
+                        <td>90 capsules</td>
+                        <td>₵65.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Protein Powder', 65.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Fish Oil Capsules</td>
+                        <td class="category-health">Health</td>
+                        <td>1 bottle</td>
+                        <td>₵52.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Fish Oil Capsules', 52.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>First Aid Kit</td>
+                        <td class="category-health">Health</td>
+                        <td>1 unit</td>
+                        <td>₵52.00</td>
+                        <td><button class="action-btn" onclick="addToCart('First Aid Kit', 52.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Blood Sugar Kit & Strips</td>
+                        <td class="category-health">Health</td>
+                        <td>20 strips</td>
+                        <td>₵45.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Blood Sugar Kit', 45.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Hand Sanitizer</td>
+                        <td class="category-wellness">Wellness</td>
+                        <td>250ml</td>
+                        <td>₵75.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Hand Sanitizer', 75.00)">+ Add to Cart</button></td>
+                    </tr>
+                    <tr>
+                        <td>Eye Drops (Box)</td>
+                        <td class="category-health">Health</td>
+                        <td>50 pieces</td>
+                        <td>₵15.00</td>
+                        <td><button class="action-btn" onclick="addToCart('Eye Drops', 15.00)">+ Add to Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Cart Sidebar -->
+        <div id="cart-sidebar" class="cart-sidebar">
+            <button class="close-cart" onclick="closeCart()">×</button>
+            <h3>Your Shopping Cart</h3>
+            <div id="cart-items" class="cart-items">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            <div class="cart-total">
+                Total: <span id="cart-total">₵0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let cartCount = 0;
+        let cartTotal = 0;
+
+        // Load cart from localStorage on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedCart = localStorage.getItem('pharmacyCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartDisplay();
+            }
+        });
+
+        function addToCart(productName, price) {
+            // Check if product already in cart
+            const existingItem = cart.find(item => item.name === productName);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+                existingItem.total = existingItem.quantity * price;
+            } else {
+                cart.push({
+                    name: productName,
+                    price: price,
+                    quantity: 1,
+                    total: price
+                });
+            }
+            
+            // Update cart count and total
+            cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartTotal = cart.reduce((sum, item) => sum + item.total, 0);
+            
+            // Save to localStorage
+            localStorage.setItem('pharmacyCart', JSON.stringify(cart));
+            
+            // Update display
+            updateCartDisplay();
+            
+            // Show success notification
+            showNotification(`${productName} added to cart!`);
+            
+            // Open cart sidebar
+            openCart();
+        }
+
+        function updateCartDisplay() {
+            // Update cart count
+            document.getElementById('cart-count').textContent = cartCount;
+            
+            // Update cart items list
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align: center; color: #999;">Your cart is empty</p>';
+                cartTotalElement.textContent = '₵0.00';
+                return;
+            }
+            
+            cartItemsContainer.innerHTML = '';
+            cart.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        <small>${item.quantity} × ₵${item.price.toFixed(2)}</small>
+                    </div>
+                    <div>
+                        <strong>₵${item.total.toFixed(2)}</strong>
+                        <button onclick="removeFromCart(${index})" style="
+                            background: #ff6b6b;
+                            color: white;
+                            border: none;
+                            padding: 3px 8px;
+                            border-radius: 4px;
+                            margin-left: 10px;
+                            cursor: pointer;
+                            font-size: 0.8rem;
+                        ">×</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+            
+            // Update total
+            cartTotalElement.textContent = `₵${cartTotal.toFixed(2)}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartTotal = cart.reduce((sum, item) => sum + item.total, 0);
+            
+            localStorage.setItem('pharmacyCart', JSON.stringify(cart));
+            updateCartDisplay();
+            
+            if (cart.length === 0) {
+                closeCart();
+            }
+        }
+
+        function openCart() {
+            document.getElementById('cart-sidebar').style.display = 'block';
+        }
+
+        function closeCart() {
+            document.getElementById('cart-sidebar').style.display = 'none';
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!', 'error');
+                return;
+            }
+            
+            // In a real application, this would redirect to checkout page
+            showNotification(`Proceeding to checkout with ${cartCount} items!`);
+            // window.location.href = 'checkout.html';
+        }
+
+        function showNotification(message, type = 'success') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'error' ? '#ff6b6b' : '#4caf50'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Add animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                    document.head.removeChild(style);
+                }, 300);
+            }, 3000);
+        }
+
+        // Close cart when clicking outside
+        document.addEventListener('click', function(event) {
+            const cartSidebar = document.getElementById('cart-sidebar');
+            if (cartSidebar.style.display === 'block' && 
+                !cartSidebar.contains(event.target) && 
+                !event.target.closest('.cart-right')) {
+                closeCart();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Kimora's Pharmacy</title>
+    <link rel="stylesheet" href="kimora.css">
+    s
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2a5ca9, #3d7cb4);
+            color: white;
+            padding: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .logo span {
+            color: #ffd700;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .main-nav a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .main-nav a.active {
+            background-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .main-nav a.cart-link {
+            background-color: #ff6b6b;
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+        
+        .main-nav a.cart-link:hover {
+            background-color: #ff5252;
+            transform: scale(1.05);
+        }
+        
+        main {
+            padding: 40px 0;
+            min-height: calc(100vh - 180px);
+        }
+        
+        .contact-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .contact-hero h1 {
+            color: #2a5ca9;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #2a5ca9, #3d7cb4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .contact-hero p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid #2a5ca9;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #2a5ca9, #3d7cb4);
+        }
+        
+        .contact-card h3 {
+            color: #2a5ca9;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-card h3::before {
+            font-size: 1.3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background-color: #eef2ff;
+        }
+        
+        .icon {
+            background: #2a5ca9;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-details {
+            flex: 1;
+        }
+        
+        .contact-details strong {
+            color: #2a5ca9;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-details a {
+            color: #3d7cb4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        
+        .contact-details a:hover {
+            color: #2a5ca9;
+            text-decoration: underline;
+        }
+        
+        .contact-details p {
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .emergency {
+            background-color: #fff5f5;
+            border-top-color: #ff6b6b;
+        }
+        
+        .emergency .icon {
+            background-color: #ff6b6b;
+        }
+        
+        .wellness-card {
+            background-color: #f0fff4;
+            border-top-color: #38b2ac;
+        }
+        
+        .wellness-card .icon {
+            background-color: #38b2ac;
+        }
+        
+        footer {
+            background: linear-gradient(to right, #2a5ca9, #3d7cb4);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            text-align: center;
+        }
+        
+        .footer-content p {
+            margin: 10px 0;
+            opacity: 0.9;
+        }
+        
+        .business-hours {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .business-hours h3 {
+            color: #2a5ca9;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            text-align: center;
+        }
+        
+        .hour-item {
+            padding: 10px;
+            background: #f8f9ff;
+            border-radius: 6px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .main-nav {
+                justify-content: center;
+                gap: 15px;
+                margin-top: 15px;
+            }
+            
+            .main-nav a {
+                padding: 8px 12px;
+                font-size: 1rem;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-card {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .main-nav a.cart-link {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            
+            .contact-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Kimora's<span> Pharmacy</span></div>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <a href="index.html.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html" class="active">Contact</a>
+                <a href="about.html">About</a>
+                <a href="cart.html" class="cart-link" aria-label="Shopping Cart">
+                    Cart 🛒
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="contact-hero">
+            <h1>Get In Touch</h1>
+            <p>We're here to help with all your healthcare needs. Reach out to us through any of the following channels.</p>
+        </section>
+
+        <div class="contact-container">
+            <div class="contact-card">
+                <h3>📧 Email & Digital</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="icon">📧</div>
+                        <div class="contact-details">
+                            <strong>Primary Email</strong>
+                            <a href="mailto:bortsieabigail68@gmail.com">bortsieabigail68@gmail.com</a>
+                            <p>We respond within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h3>📞 Phone & WhatsApp</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="icon">📱</div>
+                        <div class="contact-details">
+                            <strong>Direct Line</strong>
+                            <a href="tel:0244124710">024 412 4710</a>
+                            <p>Available 8:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">💬</div>
+                        <div class="contact-details">
+                            <strong>WhatsApp Business</strong>
+                            <a href="https://wa.me/233244124710" class="whatsapp-btn">
+                                💬 Chat on WhatsApp
+                            </a>
+                            <p>Quick responses for prescriptions and queries</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card emergency">
+                <h3>🆘 Emergency Contacts</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="icon">📞</div>
+                        <div class="contact-details">
+                            <strong>Customer Service</strong>
+                            <a href="tel:0302123456">0302 123 456</a>
+                            <p>Mon-Fri: 8:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">🚨</div>
+                        <div class="contact-details">
+                            <strong>24/7 Emergency Line</strong>
+                            <a href="tel:0557890123">055 789 0123</a>
+                            <p>For urgent pharmacy needs after hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card wellness-card">
+                <h3>💊 Wellness & Health Corner</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="icon">💬</div>
+                        <div class="contact-details">
+                            <strong>Health Consultations</strong>
+                            <p>Free wellness consultations and personalized health advice</p>
+                            <p>Book your appointment today</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">📋</div>
+                        <div class="contact-details">
+                            <strong>Services Include:</strong>
+                            <p>• Medication reviews</p>
+                            <p>• Health screenings</p>
+                            <p>• Wellness planning</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="business-hours">
+            <h3>🕒 Business Hours</h3>
+            <div class="hours-grid">
+                <div class="hour-item">
+                    <strong>Monday - Friday</strong>
+                    <p>8:00 AM - 8:00 PM</p>
+                </div>
+                <div class="hour-item">
+                    <strong>Saturday</strong>
+                    <p>9:00 AM - 6:00 PM</p>
+                </div>
+                <div class="hour-item">
+                    <strong>Sunday</strong>
+                    <p>10:00 AM - 4:00 PM</p>
+                </div>
+                <div class="hour-item">
+                    <strong>Emergency</strong>
+                    <p>24/7 On-Call</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>📍 Location: Accra, Ghana</p>
+            <p>© 2024 Kimora's Pharmacy. All Rights Reserved.</p>
+            <p>Your Health, Our Priority 💙</p>
+        </div>
+    </footer>
+</body>
+</html>

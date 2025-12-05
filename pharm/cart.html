@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart | Pharmacy & fedelity design</title>
+    
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        header {
+            background: #2a5ca9;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .topnav {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .topnav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+        
+        .topnav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .topnav a.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .cart-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            gap: 15px;
+        }
+        
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .item-details h4 {
+            margin: 0 0 5px 0;
+            color: #2a5ca9;
+        }
+        
+        .item-price {
+            font-weight: bold;
+            color: #2a5ca9;
+            font-size: 1.1rem;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .quantity-btn {
+            background: #2a5ca9;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .quantity {
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .remove-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .cart-summary {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #2a5ca9;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+        
+        .total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2a5ca9;
+        }
+        
+        .checkout-btn {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .empty-cart img {
+            width: 150px;
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart</h1>
+        <nav>
+            <div class="topnav">
+                <a href="index.html.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+                <a href="about.html">About</a>
+                <a href="cart.html" class="active">Cart</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="cart-container">
+        <!-- Cart items will be dynamically loaded here -->
+        <div id="cart-items-container">
+            <!-- Example cart item with image -->
+            <div class="cart-item">
+                <img src="images/panadol.jpg" alt="Pan Relief">
+                <div class="item-details">
+                    <h4>Pan Relief</h4>
+                    <p>30 tablets - Pain reliever and fever reducer</p>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">1</span>
+                        <button class="quantity-btn plus" onclick="updateQuantity(this, 1)">+</button>
+                        <span class="item-price">₵15.00</span>
+                        <button class="remove-btn" onclick="removeItem(this)">Remove</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-item">
+                <img src="images/cough-syrup.jpg" alt="Cough Syrup">
+                <div class="item-details">
+                    <h4>Cough Syrup</h4>
+                    <p>100ml - For cough relief</p>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">1</span>
+                        <button class="quantity-btn plus" onclick="updateQuantity(this, 1)">+</button>
+                        <span class="item-price">₵22.00</span>
+                        <button class="remove-btn" onclick="removeItem(this)">Remove</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-item">
+                <img src="images/vitamin-c.jpg" alt="Vitamin C">
+                <div class="item-details">
+                    <h4>Vitamin C Supplement</h4>
+                    <p>90 tablets - Immune system support</p>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">1</span>
+                        <button class="quantity-btn plus" onclick="updateQuantity(this, 1)">+</button>
+                        <span class="item-price">₵42.00</span>
+                        <button class="remove-btn" onclick="removeItem(this)">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="empty-cart-message" class="empty-cart" style="display: none;">
+            <img src="images/empty-cart.png" alt="Empty Cart">
+            <h3>Your cart is empty</h3>
+            <p>Add some products to get started!</p>
+            <a href="products.html" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #2a5ca9; color: white; text-decoration: none; border-radius: 5px;">Browse Products</a>
+        </div>
+
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">₵79.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping:</span>
+                <span id="shipping">₵5.00</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total:</span>
+                <span id="total">₵84.00</span>
+            </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        // Load cart from localStorage
+        let cartItems = [];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCartFromStorage();
+            updateCartDisplay();
+        });
+        
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('pharmacyCart');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+            }
+            
+            // If no saved cart, use sample items
+            if (cartItems.length === 0) {
+                cartItems = [
+                    { id: 1, name: 'Pan Relief', price: 15.00, quantity: 1, image: 'images/panadol.jpg', description: '30 tablets - Pain reliever and fever reducer' },
+                    { id: 2, name: 'Cough Syrup', price: 22.00, quantity: 1, image: 'images/cough-syrup.jpg', description: '100ml - For cough relief' },
+                    { id: 3, name: 'Vitamin C Supplement', price: 42.00, quantity: 1, image: 'images/vitamin-c.jpg', description: '90 tablets - Immune system support' }
+                ];
+            }
+        }
+        
+        function updateCartDisplay() {
+            const cartContainer = document.getElementById('cart-items-container');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            const subtotalElement = document.getElementById('subtotal');
+            const shippingElement = document.getElementById('shipping');
+            const totalElement = document.getElementById('total');
+            
+            if (cartItems.length === 0) {
+                cartContainer.style.display = 'none';
+                emptyCartMessage.style.display = 'block';
+                subtotalElement.textContent = '₵0.00';
+                shippingElement.textContent = '₵0.00';
+                totalElement.textContent = '₵0.00';
+                return;
+            }
+            
+            cartContainer.style.display = 'block';
+            emptyCartMessage.style.display = 'none';
+            
+            // Clear existing items
+            cartContainer.innerHTML = '';
+            
+            let subtotal = 0;
+            
+            // Add each cart item
+            cartItems.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const cartItemHTML = `
+                    <div class="cart-item" data-index="${index}">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='images/default-product.jpg'">
+                        <div class="item-details">
+                            <h4>${item.name}</h4>
+                            <p>${item.description || 'Health product'}</p>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus" onclick="updateQuantityByIndex(${index}, -1)">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="quantity-btn plus" onclick="updateQuantityByIndex(${index}, 1)">+</button>
+                                <span class="item-price">₵${itemTotal.toFixed(2)}</span>
+                                <button class="remove-btn" onclick="removeItemByIndex(${index})">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                cartContainer.innerHTML += cartItemHTML;
+            });
+            
+            // Calculate shipping (free over ₵100)
+            const shipping = subtotal >= 100 ? 0 : 5;
+            const total = subtotal + shipping;
+            
+            // Update summary
+            subtotalElement.textContent = `₵${subtotal.toFixed(2)}`;
+            shippingElement.textContent = shipping === 0 ? 'FREE' : `₵${shipping.toFixed(2)}`;
+            totalElement.textContent = `₵${total.toFixed(2)}`;
+            
+            // Save to localStorage
+            localStorage.setItem('pharmacyCart', JSON.stringify(cartItems));
+        }
+        
+        function updateQuantityByIndex(index, change) {
+            cartItems[index].quantity += change;
+            
+            // Ensure quantity doesn't go below 1
+            if (cartItems[index].quantity < 1) {
+                cartItems[index].quantity = 1;
+            }
+            
+            // If quantity is 0, remove item
+            if (cartItems[index].quantity === 0) {
+                cartItems.splice(index, 1);
+            }
+            
+            updateCartDisplay();
+        }
+        
+        function removeItemByIndex(index) {
+            cartItems.splice(index, 1);
+            updateCartDisplay();
+        }
+        
+        function updateQuantity(button, change) {
+            const cartItem = button.closest('.cart-item');
+            const index = parseInt(cartItem.dataset.index);
+            updateQuantityByIndex(index, change);
+        }
+        
+        function removeItem(button) {
+            const cartItem = button.closest('.cart-item');
+            const index = parseInt(cartItem.dataset.index);
+            removeItemByIndex(index);
+        }
+        
+        function proceedToCheckout() {
+            if (cartItems.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            // Save cart for checkout page
+            localStorage.setItem('checkoutCart', JSON.stringify(cartItems));
+            
+            // Redirect to checkout page
+            alert('Redirecting to checkout...');
+            // window.location.href = 'checkout.html';
+        }
+        
+        function clearCart() {
+            if (confirm('Are you sure you want to clear your cart?')) {
+                cartItems = [];
+                localStorage.removeItem('pharmacyCart');
+                updateCartDisplay();
+            }
+        }
+    </script>
+    <h2>Fedelity Design</h2>
+    <img src="images/design1.jpg.jpg" alt="pic 1" style="width: 500px; height: 500px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+    <img src="images/design2.jpg.jpg" alt="pic 2" style="width: 500px; height: 500px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+    <img src="images/design3.jpg.jpg" alt="pic 3" style="width: 500px; height: 500px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+    <img src="images/design4 (1).jpg" alt="pic 4" style="width: 500px; height: 500px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+    <img src="images/design4 (2).jpg" alt="pic 5" style="width: 500px; height: 500px; margin-left: 20px; border-radius: 8px; object-fit: cover;">
+</body>
+</html>

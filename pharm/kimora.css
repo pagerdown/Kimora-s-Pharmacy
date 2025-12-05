@@ -1,0 +1,568 @@
+/* Top Navigation Bar */
+.topnav {
+    background-color: #f2e8e8;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(30, 144, 255, 0.4); /* Fixed: rbga -> rgba */
+    padding: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+<div class="topnav">
+        <a class="active" href="home">Home</a>
+        <a href="products.html">Products</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+        <a href="cart.html" class="cart-right" style="top: 0;">Cart & fedelity design</a>
+    </div>
+/* Style the links inside the navigation bar */
+.topnav a {
+    display: inline-block; /* Changed: removed float: center */
+    color: #161f29;
+    text-align: center;
+    padding: 12px 20px; /* Reduced padding for better proportion */
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 5px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #6673d7; /* Changed to match active color */
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #6673d7;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(102, 115, 215, 0.3);
+}
+
+/* Brand Section */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.brand img {
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.brand h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 24px;
+    color: #2a7de1;
+}
+
+/* Hero Image */
+.hero-image {
+    width: 100%;
+    max-width: 75%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* Featured Products */
+.featured-products {
+    padding: 2rem;
+    text-align: center;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin: 2rem auto;
+}
+
+.featured-products h3 {
+    font-weight: 700;
+    color: #2a7de1;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.featured-products ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.featured-products li {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.2rem;
+    border-radius: 8px;
+    border-left: 4px solid #4a90e2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.featured-products li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header and navigation */
+header {
+    background: linear-gradient(135deg, #2a7de1 0%, #1a5bb5 100%);
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo:hover {
+    color: #e6f2ff;
+    opacity: 0.9;
+}
+
+.main-nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.main-nav a:hover::before {
+    left: 100%;
+}
+
+.main-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.cart-right {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.cart-right:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Category navigation */
+.category {
+    background-color: #4a90e2;
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.category a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.category a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: #ffd166;
+    transition: width 0.3s ease;
+}
+
+.category a:hover::after {
+    width: 70%;
+}
+
+/* Main content layout */
+.content-container {
+    display: flex;
+    align-items: flex-start;
+    padding: 3rem 2rem;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-image-container {
+    flex: 1;
+}
+
+.hero-image-main {
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Featured products section */
+.featured-section {
+    flex: 1;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.featured-section h2 {
+    color: #2a7de1;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 3px solid #4a90e2;
+}
+
+.featured-section ul {
+    list-style-type: none;
+}
+
+.featured-section li {
+    background-color: #f8f9fa;
+    margin-bottom: 1rem;
+    padding: 1.2rem 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.featured-section li::before {
+    content: '✓';
+    color: #2a7de1;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.featured-section li:hover {
+    transform: translateX(8px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Category-specific styles with classes */
+.category-medicine {
+    border-left-color: #2196f3 !important;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+}
+
+.category-wellness {
+    border-left-color: #4caf50 !important;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%) !important;
+}
+
+.category-healthcorner {
+    border-left-color: #ff9800 !important;
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%) !important;
+}
+
+/* Products Section */
+.products-section {
+    padding: 3rem 2rem;
+    background-color: #f8f9fa;
+    margin-top: 2rem;
+}
+
+.products-section h2 {
+    color: #2a7de1;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.products-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #2a7de1, #4a90e2);
+    border-radius: 2px;
+}
+
+.table-container {
+    overflow-x: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.products-table thead {
+    background: linear-gradient(135deg, #2a7de1 0%, #1a5bb5 100%);
+    color: white;
+}
+
+.products-table th {
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: sticky;
+    top: 0;
+}
+
+.products-table tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+}
+
+.products-table tbody tr:hover {
+    background-color: #f0f7ff;
+}
+
+.products-table td {
+    padding: 1.2rem 1.5rem;
+    color: #333;
+    vertical-align: middle;
+}
+
+.products-table td:nth-child(4) {
+    color: #2a7de1;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Category indicators using classes */
+.category-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.indicator-medicine {
+    background-color: #2196f3;
+}
+
+.indicator-wellness {
+    background-color: #4caf50;
+}
+
+.indicator-healthcorner {
+    background-color: #ff9800;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+    .content-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .hero-image-main {
+        height: 400px;
+    }
+    
+    .main-nav {
+        gap: 1rem;
+    }
+    
+    .category {
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .hero-image-main {
+        height: 300px;
+    }
+    
+    .featured-section,
+    .featured-products {
+        padding: 1.5rem;
+    }
+    
+    .table-container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .topnav a {
+        padding: 10px 12px;
+        font-size: 14px;
+        margin: 2px;
+    }
+    
+    .brand h1 {
+        font-size: 20px;
+    }
+    
+    .main-nav a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .cart-right {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation for page elements */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.featured-section li,
+.products-table tbody tr {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4a90e2;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2a7de1;
+}

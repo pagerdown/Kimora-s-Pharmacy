@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Kimora's Pharmacy</title>
+    
+    <style>
+        /* Body and general styling */
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: #f5f5f5; 
+        }
+        
+        header { 
+            background: #2a5ca9; 
+            color: white; 
+            padding: 15px; 
+            text-align: center; 
+            margin-bottom: 20px; 
+        }
+        
+        /* Navigation Bar Styling */
+        .topnav {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px auto;
+            max-width: 800px;
+            gap: 2px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .topnav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            margin: 0 2px;
+        }
+        
+        .topnav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .topnav a.active {
+            background: white;
+            color: #2a5ca9;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cart-right {
+            margin-left: auto;
+            background: #ff9800;
+            color: white;
+            font-weight: bold;
+            padding: 12px 25px !important;
+        }
+        
+        .cart-right:hover {
+            background: #ff7b00;
+            transform: scale(1.05);
+        }
+        
+        /* Services grid */
+        .services { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 15px; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .wellness { 
+            background: white; 
+            padding: 25px; 
+            margin-top: 30px; 
+            border-radius: 8px; 
+            max-width: 1200px;
+            margin: 30px auto 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 { 
+            margin: 0 0 15px 0; 
+            font-size: 2.5em; 
+        }
+        
+        h2 { 
+            color: #2a5ca9; 
+            margin-top: 0; 
+        }
+        
+        h3 { 
+            color: #2a5ca9; 
+            margin-top: 0; 
+            font-size: 1.4em;
+        }
+        
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .topnav {
+                flex-wrap: wrap;
+                padding: 8px;
+            }
+            
+            .topnav a {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .services {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pharmacy Services</h1>
+        <div class="topnav">
+            <a href="index.html.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
+            <a href="cart.html" class="cart-right">Cart & Fidelity Design</a>
+        </div>
+    </header>
+
+    <div class="services">
+        <div class="service">
+            <h3>Prescription Services</h3>
+            <p>Fast and accurate prescription filling with delivery options. Our pharmacists ensure your medications are prepared safely and efficiently.</p>
+        </div>
+        <div class="service">
+            <h3>Immunizations</h3>
+            <p>Flu shots, travel vaccines, and COVID-19 vaccines. Stay protected with our comprehensive immunization services.</p>
+        </div>
+        <div class="service">
+            <h3>Health Screenings</h3>
+            <p>Blood pressure, cholesterol, and glucose testing. Regular health monitoring to help you stay on top of your wellness.</p>
+        </div>
+        <div class="service">
+            <h3>Medication Management</h3>
+            <p>Personalized consultations and drug interaction checks. Our experts help you manage complex medication regimens.</p>
+        </div>
+    </div>
+
+    <div class="wellness">
+        <h2>Wellness & Health Corner</h2>
+        <p>Nutrition counseling, fitness planning, and health education resources. We're committed to your overall well-being beyond just medications.</p>
+    </div>
+</body>
+</html>
